@@ -23,7 +23,8 @@ The editor features a vast variety of randomizers to make every run as unique as
 
 ## Bugs
 
-Be careful when adding new items. Everything that gets added and than deleted gets a 00 Hex designation. It will show up as "empty" ingame will lead too a freeze on 3ds works fine on Azahar.
+Be careful when adding new items. Everything that gets added and than deleted gets a 00 Hex designation. It will show up as "empty" ingame this will lead too a freeze on 3ds but works fine on Azahar.
+Make backups off the code.bin file and only add items too the shop when you are certain you will not take them away.
 
 ## Installation
 
