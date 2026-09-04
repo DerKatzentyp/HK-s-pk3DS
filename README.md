@@ -7,16 +7,9 @@
 pk3DS is a ROM editor for all 3DS Pokémon games that utilizes a variety of tools developed by a large group of contributors. pk3DS was created 
 using C# and primarily focuses on its randomizer to provide users with a fresh and new experience in the beloved Pokémon games. 
 
-## Table of contents
-
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Support](#support)
-
 ## Features
 
-Our editor features a vast variety of randomizers to make every run as unique as possible. The Randomizers currently available are:
+The editor features a vast variety of randomizers to make every run as unique as possible. The Randomizers currently available are:
 
 - Trainer Battles (Pokemon / Items / Moves / Abilities / Difficulty / Classes)
 - Wild Encounters (Species, Level, Gen/Legend Specific, ORAS DexNav won't crash!)
@@ -26,6 +19,11 @@ Our editor features a vast variety of randomizers to make every run as unique as
 - Evolutions
 - TM Moves
 - Special Mart Inventory
+- Automatic repointing off Shops. (a maximum off 60 items)
+
+## Bugs
+
+Be careful when adding new items. Everything that gets added and than deleted gets a 00 Hex designation. It will show up as "empty" ingame will lead too a freeze on 3ds works fine on Azahar.
 
 ## Installation
 
@@ -38,6 +36,7 @@ To begin using pk3DS you must first download the pk3DS editor zip file. Once you
 Place the files in the same folder then simply run the pk3DS.exe file.
 Once you open up the executable you can begin having fun with our editor and randomizing all the attributes and characteristics of the game to your liking.
 Below are some images of how the editor should look when you run it.
+
 ![RomFS Editing Tools](https://i.imgur.com/IDVCMfx.png)
 ![ExeFS Editing Tools](https://i.imgur.com/Ied0sVV.png)
 ![CRO Editing Tools](https://i.imgur.com/lUSGbw5.png)
@@ -50,7 +49,3 @@ pk3DS is a Windows Forms application which requires [.NET 10](https://dotnet.mic
 
 The executable can be built with any compiler that supports C# 14.
 
-## Support
-
-If any bugs or errors are caught or experienced come to our [forum page](https://projectpokemon.org/home/forums/topic/34377-pk3ds-pok%C3%A9mon-3ds-rom-editor-and-randomizer/) and communicate with us on what the issue is.
-Many community members as well as contributors are active and can be found there. 
