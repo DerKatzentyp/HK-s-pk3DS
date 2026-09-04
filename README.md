@@ -39,10 +39,6 @@ Below are some images of how the editor should look when you run it.
 ![CRO Editing Tools](https://i.imgur.com/lUSGbw5.png)
 <img width="373" height="469" alt="image" src="https://github.com/user-attachments/assets/86a42e13-263f-4165-9492-fa7a739afa7c" />
 
+## Installation
 
-## Building
-
-pk3DS is a Windows Forms application which requires [.NET 10](https://dotnet.microsoft.com/download/dotnet/10.0).
-
-The executable can be built with any compiler that supports C# 14.
-
+The program comes prebuilt, open pk3DS.WinForms.exe to start using the program. It is required to start the program as Administrator to actually save the changes, so make sure you click "run as Administrator".
