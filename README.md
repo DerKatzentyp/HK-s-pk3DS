@@ -7,7 +7,7 @@
 pk3DS is a ROM editor for all 3DS Pokémon games that utilizes a variety of tools developed by a large group of contributors. pk3DS was created 
 using C# and primarily focuses on its randomizer to provide users with a fresh and new experience in the beloved Pokémon games. 
 
-## Features
+## Features (This entire Tool is specificly designed for X and only tested on X. Try Y with your own risk)
 
 The editor features a vast variety of randomizers to make every run as unique as possible. The Randomizers currently available are:
 
