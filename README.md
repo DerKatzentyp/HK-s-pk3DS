@@ -26,10 +26,6 @@ The editor features a vast variety of randomizers to make every run as unique as
 Be careful when adding new items. Everything that gets added and than deleted gets a 00 Hex designation. It will show up as "empty" ingame this will lead too a freeze on 3ds but works fine on Azahar.
 Make backups off the code.bin file and only add items too the shop when you are certain you will not take them away.
 
-## Installation
-
-To download pk3DS, all you need to do is go into our [forum page](https://projectpokemon.org/home/forums/topic/34377-pk3ds-pok%C3%A9mon-3ds-rom-editor-and-randomizer/) and following the instructions there.
-
 ## Usage
 
 To begin using pk3DS you must first download the pk3DS editor zip file. Once you've downloaded the zip file for the editor, dump your ROM from the 3DS Pokémon game of your choosing.
