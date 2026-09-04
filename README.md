@@ -41,6 +41,8 @@ Below are some images of how the editor should look when you run it.
 ![RomFS Editing Tools](https://i.imgur.com/IDVCMfx.png)
 ![ExeFS Editing Tools](https://i.imgur.com/Ied0sVV.png)
 ![CRO Editing Tools](https://i.imgur.com/lUSGbw5.png)
+<img width="373" height="469" alt="image" src="https://github.com/user-attachments/assets/86a42e13-263f-4165-9492-fa7a739afa7c" />
+
 
 ## Building
 
