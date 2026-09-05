@@ -19,7 +19,7 @@ The editor features a vast variety of randomizers to make every run as unique as
 - Evolutions
 - TM Moves
 - Special Mart Inventory
-- Automatic repointing off Shops. (a maximum off 60 items)
+- Automatic repointing off Shops. (a maximum off 57 items)
 
 ## Usage
 
