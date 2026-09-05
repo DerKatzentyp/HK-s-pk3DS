@@ -7,7 +7,7 @@
 pk3DS is a ROM editor for all 3DS Pokémon games that utilizes a variety of tools developed by a large group of contributors. pk3DS was created 
 using C# and primarily focuses on its randomizer to provide users with a fresh and new experience in the beloved Pokémon games. 
 
-## Features (This entire Tool is specificly designed for X and only tested on X. Try Y with your own risk)
+## Features tool for Pokemon X and Y
 
 The editor features a vast variety of randomizers to make every run as unique as possible. The Randomizers currently available are:
 
@@ -19,9 +19,14 @@ The editor features a vast variety of randomizers to make every run as unique as
 - Evolutions
 - TM Moves
 - Special Mart Inventory
-- Automatic repointing off Shops. (a maximum off 57 items)
+- Automatic repointing off Shops. (possibility off up too 300+ shop items)
 
 ## Usage
+
+Owse.cs was alterred too be a functional tool for dumping bytes now doesnt crash and instead skips corrupted data.
+Unk was reporpused too dump all scripts.
+check_shop.py is there too look if any shops are missaligned on a hex level.
+
 
 To begin using pk3DS you must first download the pk3DS editor zip file. Once you've downloaded the zip file for the editor, dump your ROM from the 3DS Pokémon game of your choosing.
 
