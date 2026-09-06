@@ -23,14 +23,16 @@ The editor features a vast variety of randomizers to make every run as unique as
 
 ## Installation and Usage
 
-Owse.cs was alterred too be a functional tool for dumping bytes now doesnt crash and instead skips corrupted data.
-Unk was reporpused too dump all scripts.
-check_shop.py is there too look if any shops are missaligned on a hex level.
-
 To begin using HKs-pk3DS you must first download the zip file. Once you've downloaded the zip file for the editor, dump your ROM from the 3DS Pokémon game of your choosing.
 
 Run the pk3DS.WinForms.exe in Administrator mode right click the program and click "run as Administrator".
 Once you open up the executable you can begin having fun with our editor and randomizing all the attributes and characteristics of the game to your liking.
+Make sure X,Y and ORAS are on the original version any update installed may crash the games.
+
+Owse.cs was alterred too be a functional tool for dumping bytes now doesnt crash and instead skips corrupted data.
+Unk was reporpused too dump all scripts.
+check_shop.py is there too look if any shops are missaligned on a hex level. (1. this shouldnt be a problem anymore 2. if its missaligned its likly not going too cause a crash anymore)
+
 Below are some images of how the editor should look when you run it.
 
 ![RomFS Editing Tools](https://i.imgur.com/IDVCMfx.png)
