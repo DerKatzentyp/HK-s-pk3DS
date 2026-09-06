@@ -39,5 +39,7 @@ Below are some images of how the editor should look when you run it.
 ![ExeFS Editing Tools](https://i.imgur.com/Ied0sVV.png)
 ![CRO Editing Tools](https://i.imgur.com/lUSGbw5.png)
 <img width="373" height="469" alt="image" src="https://github.com/user-attachments/assets/86a42e13-263f-4165-9492-fa7a739afa7c" />
+<img width="376" height="465" alt="image" src="https://github.com/user-attachments/assets/cba20590-44b6-4246-b7c8-bda8b55ff717" />
+
 
 
