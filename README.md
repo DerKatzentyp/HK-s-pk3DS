@@ -20,8 +20,17 @@ The editor features a vast variety of randomizers to make every run as unique as
 - TM Moves
 - Special Mart Inventory
 - Automatic repointing off Shops. (possibility off up too 300+ shop items)
-- Ability to add subforms 1.4 only
-- Ability to add Items 1.4 only
+- Ability to add subforms 1.4 only XY only
+- Ability to add Items 1.4 only XY only
+
+## Notes 1.4 XY only
+- New subforms have no model of their own. They use the base form's model and name
+  in game. only the data (stats, types, abilities, learnset) is separate.
+- Start each ROM Expander run from a **clean RomFS**. Expanding a ROM that is already
+  half-expanded makes the text lists mismatch, and those slots get skipped on purpose.
+- Item names can be renamed in the Text Editor (Game Text, sub-file 98). Keep the
+  trailing `[VAR ...]` on the line — it is the pluralisation variable, and removing it
+  crashes the game when the shop draws the name.
 
 ## Installation and Usage
 
