@@ -48,6 +48,7 @@ sealed partial class Main
         this.Menu_BLZ = new System.Windows.Forms.ToolStripMenuItem();
         this.Menu_LZ11 = new System.Windows.Forms.ToolStripMenuItem();
         this.Menu_Shuffler = new System.Windows.Forms.ToolStripMenuItem();
+        this.Menu_Expander = new System.Windows.Forms.ToolStripMenuItem();
         this.Menu_Extract = new System.Windows.Forms.ToolStripMenuItem();
         this.Menu_Extract_CXI = new System.Windows.Forms.ToolStripMenuItem();
         this.Menu_Rebuild = new System.Windows.Forms.ToolStripMenuItem();
@@ -261,7 +262,8 @@ sealed partial class Main
             this.unPackBCLIMToolStripMenuItem,
             this.Menu_BLZ,
             this.Menu_LZ11,
-            this.Menu_Shuffler});
+            this.Menu_Shuffler,
+            this.Menu_Expander});
         this.Menu_Misc.Name = "Menu_Misc";
         this.Menu_Misc.Size = new System.Drawing.Size(184, 22);
         this.Menu_Misc.Text = "Misc Tools";
@@ -297,6 +299,14 @@ sealed partial class Main
         this.Menu_Shuffler.Size = new System.Drawing.Size(216, 22);
         this.Menu_Shuffler.Text = "GARC Shuffler";
         this.Menu_Shuffler.Click += new System.EventHandler(this.Menu_Shuffler_Click);
+        // 
+        // Menu_Expander
+        // 
+        this.Menu_Expander.Enabled = false;
+        this.Menu_Expander.Name = "Menu_Expander";
+        this.Menu_Expander.Size = new System.Drawing.Size(216, 22);
+        this.Menu_Expander.Text = "ROM Expander (Forms/Items)";
+        this.Menu_Expander.Click += new System.EventHandler(this.Menu_Expander_Click);
         // 
         // Menu_Extract
         // 
@@ -850,6 +860,7 @@ sealed partial class Main
     private System.Windows.Forms.ToolStripMenuItem Menu_SMDH;
     private System.Windows.Forms.ToolStripMenuItem Menu_CRO;
     private System.Windows.Forms.ToolStripMenuItem Menu_Shuffler;
+    private System.Windows.Forms.ToolStripMenuItem Menu_Expander;
     private System.Windows.Forms.TabControl TC_RomFS;
     private System.Windows.Forms.TabPage Tab_RomFS;
     private System.Windows.Forms.TabPage Tab_ExeFS;

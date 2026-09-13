@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------------------*/
+﻿/*----------------------------------------------------------------------------*/
 /*--  This program is free software: you can redistribute it and/or modify  --*/
 /*--  it under the terms of the GNU General Public License as published by  --*/
 /*--  the Free Software Foundation, either version 3 of the License, or     --*/
@@ -286,7 +286,7 @@ public sealed partial class Main : Form
             WinFormsUtil.Alert("pk3DS will function best if you keep your Game Files folder clean and free of unnecessary folders.");
 
         // Enable buttons if applicable
-        Tab_RomFS.Enabled = Menu_Restore.Enabled = Tab_CRO.Enabled = Menu_CRO.Enabled = Menu_Shuffler.Enabled = RomFSPath != null;
+        Tab_RomFS.Enabled = Menu_Restore.Enabled = Tab_CRO.Enabled = Menu_CRO.Enabled = Menu_Shuffler.Enabled = Menu_Expander.Enabled = RomFSPath != null;
         Tab_ExeFS.Enabled = RomFSPath != null && ExeFSPath != null;
         if (RomFSPath != null && Config != null)
         {
@@ -1457,6 +1457,11 @@ public sealed partial class Main : Form
     private void Menu_Shuffler_Click(object sender, EventArgs e)
     {
         new Shuffler().ShowDialog();
+    }
+
+    private void Menu_Expander_Click(object sender, EventArgs e)
+    {
+        new Expander().ShowDialog();
     }
 
     // GARC Requests

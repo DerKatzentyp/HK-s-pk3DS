@@ -111,17 +111,38 @@ public partial class PersonalEditor6 : Form
 
         if (mode == "XY")
         {
-            string[] temp_items = new string[718]; // 719 items in XY
-            Array.Copy(items, temp_items, temp_items.Length);
-            items = temp_items;
+            // Clamp to what the ROM ACTUALLY has, not to vanilla XY's counts.
+            // The old hard-coded 718/799 hid every entry added by the ROM Expander
+            // (and quietly dropped vanilla's last item and last two personal entries).
+            int itemCount = items.Length;
+            try { itemCount = Main.Config.GetGARCData("item").FileCount; } catch { }
+            if (items.Length > itemCount)
+            {
+                string[] temp_items = new string[itemCount];
+                Array.Copy(items, temp_items, temp_items.Length);
+                items = temp_items;
+            }
 
             string[] temp_moves = new string[moves.Length - 4]; // 4 new moves added in ORAS
             Array.Copy(moves, temp_moves, temp_moves.Length);
             moves = temp_moves;
 
-            string[] temp_species = new string[799]; // 799 species in XY
-            Array.Copy(species, temp_species, temp_species.Length);
-            species = temp_species;
+            int entryCount = Main.Config.Personal.Table.Length;
+            if (species.Length > entryCount)
+            {
+                string[] temp_species = new string[entryCount];
+                Array.Copy(species, temp_species, temp_species.Length);
+                species = temp_species;
+            }
+            else if (species.Length < entryCount)
+            {
+                // appended form slots have no name yet - label them so they are selectable
+                string[] temp_species = new string[entryCount];
+                Array.Copy(species, temp_species, species.Length);
+                for (int i = species.Length; i < entryCount; i++)
+                    temp_species[i] = $"(new form {i})";
+                species = temp_species;
+            }
 
             CLB_ORASTutors.Visible =
                 CLB_ORASTutors.Enabled =

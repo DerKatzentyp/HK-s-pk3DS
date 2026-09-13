@@ -182,18 +182,18 @@ public sealed partial class OWSE : Form
         RTB_F.Text = RTB_N.Text = RTB_W.Text = RTB_T1.Text = RTB_T2.Text = string.Empty;
         fEntry = nEntry = wEntry = tEntry = uEntry = -1;
         // Set Counters
-        NUD_FurnCount.Value = CurrentZone.Entities.FurnitureCount; ChangeFurnitureCount(null, null);
-        NUD_NPCCount.Value = CurrentZone.Entities.NPCCount; ChangeNPCCount(null, null);
-        NUD_WarpCount.Value = CurrentZone.Entities.WarpCount; ChangeWarpCount(null, null);
-        NUD_TrigCount.Value = CurrentZone.Entities.TriggerCount; ChangeTriggerCount(null, null);
-        NUD_UnkCount.Value = CurrentZone.Entities.UnknownCount; ChangeUnkCount(null, null);
+        try { NUD_FurnCount.Value = CurrentZone.Entities.FurnitureCount; ChangeFurnitureCount(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"FurnCount load failed: {ex.Message}"); }
+        try { NUD_NPCCount.Value = CurrentZone.Entities.NPCCount; ChangeNPCCount(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"NPCCount load failed: {ex.Message}"); }
+        try { NUD_WarpCount.Value = CurrentZone.Entities.WarpCount; ChangeWarpCount(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"WarpCount load failed: {ex.Message}"); }
+        try { NUD_TrigCount.Value = CurrentZone.Entities.TriggerCount; ChangeTriggerCount(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"TrigCount load failed: {ex.Message}"); }
+        try { NUD_UnkCount.Value = CurrentZone.Entities.UnknownCount; ChangeUnkCount(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"UnkCount load failed: {ex.Message}"); }
 
         // Collect/Load Data
-        NUD_FE.Value = NUD_FE.Maximum < 0 ? -1 : 0; ChangeFurniture(null, null);
-        NUD_NE.Value = NUD_NE.Maximum < 0 ? -1 : 0; ChangeNPC(null, null);
-        NUD_WE.Value = NUD_WE.Maximum < 0 ? -1 : 0; ChangeWarp(null, null);
-        NUD_TE.Value = NUD_TE.Maximum < 0 ? -1 : 0; ChangeTrigger1(null, null);
-        NUD_UE.Value = NUD_UE.Maximum < 0 ? -1 : 0; ChangeTrigger2(null, null);
+        try { NUD_FE.Value = NUD_FE.Maximum < 0 ? -1 : 0; ChangeFurniture(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"Furniture load failed: {ex.Message}"); }
+        try { NUD_NE.Value = NUD_NE.Maximum < 0 ? -1 : 0; ChangeNPC(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"NPC load failed: {ex.Message}"); }
+        try { NUD_WE.Value = NUD_WE.Maximum < 0 ? -1 : 0; ChangeWarp(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"Warp load failed: {ex.Message}"); }
+        try { NUD_TE.Value = NUD_TE.Maximum < 0 ? -1 : 0; ChangeTrigger1(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"Trigger1 load failed: {ex.Message}"); }
+        try { NUD_UE.Value = NUD_UE.Maximum < 0 ? -1 : 0; ChangeTrigger2(null, null); } catch (Exception ex) { System.Diagnostics.Debug.WriteLine($"Trigger2 load failed: {ex.Message}"); }
 
         // Process Scripts
         var script = CurrentZone.Entities.Script;
@@ -604,15 +604,26 @@ public sealed partial class OWSE : Form
         debugToolDumping = true;
         List<string> result = [];
         List<byte[]> data = [];
+        List<int> skipped = [];
         for (int i = 0; i < CB_LocationID.Items.Count; i++)
         {
-            CB_LocationID.SelectedIndex = i;
-            for (int j = 0; j < CurrentZone.Entities.NPCCount; j++)
+            try
             {
-                result.Add(Util.GetHexString(CurrentZone.Entities.NPCs[j].Raw));
-                data.Add(CurrentZone.Entities.NPCs[j].Raw);
+                CB_LocationID.SelectedIndex = i;
+                for (int j = 0; j < CurrentZone.Entities.NPCCount; j++)
+                {
+                    result.Add(Util.GetHexString(CurrentZone.Entities.NPCs[j].Raw));
+                    data.Add(CurrentZone.Entities.NPCs[j].Raw);
+                }
+            }
+            catch (Exception ex)
+            {
+                skipped.Add(i);
+                System.Diagnostics.Debug.WriteLine($"Skipped location {i}: {ex.Message}");
             }
         }
+        if (skipped.Count > 0)
+            WinFormsUtil.Alert($"Skipped {skipped.Count} location(s) that failed to load: {string.Join(", ", skipped)}");
         if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Write NPCs to file?") == DialogResult.Yes)
             File.WriteAllBytes("NPCs.bin", data.SelectMany(z => z).ToArray());
 
@@ -679,25 +690,36 @@ public sealed partial class OWSE : Form
 
     private void B_DumpUnk_Click(object sender, EventArgs e)
     {
-        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Export all Unks?") != DialogResult.Yes)
+        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Export all decompiled Scripts?") != DialogResult.Yes)
             return;
 
         debugToolDumping = true;
         List<string> result = [];
-        List<byte[]> data = [];
+        List<int> skipped = [];
         for (int i = 0; i < CB_LocationID.Items.Count; i++)
         {
-            CB_LocationID.SelectedIndex = i;
-            for (int j = 0; j < CurrentZone.Entities.UnknownCount; j++)
+            try
             {
-                result.Add(Util.GetHexString(CurrentZone.Entities.Triggers2[j].Raw));
-                data.Add(CurrentZone.Entities.Triggers2[j].Raw);
+                CB_LocationID.SelectedIndex = i;
+                result.Add($"=== location {i}: {CB_LocationID.Items[i]} ===");
+                string[] lines = CurrentZone.Entities.Script.ParseScript;
+                result.AddRange(lines);
+                result.Add("");
+            }
+            catch (Exception ex)
+            {
+                skipped.Add(i);
+                result.Add($"=== location {i}: {CB_LocationID.Items[i]} === SKIPPED: {ex.Message}");
+                result.Add("");
+                System.Diagnostics.Debug.WriteLine($"Skipped location {i}: {ex.Message}");
             }
         }
-        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Write Unks to file?") == DialogResult.Yes)
-            File.WriteAllBytes("Unks.bin", data.SelectMany(z => z).ToArray());
+        if (skipped.Count > 0)
+            WinFormsUtil.Alert($"Skipped {skipped.Count} location(s) that failed to load: {string.Join(", ", skipped)}");
+        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Write Scripts to file?") == DialogResult.Yes)
+            File.WriteAllLines("Scripts.txt", result);
 
-        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Copy Unks to Clipboard?") == DialogResult.Yes)
+        if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Copy Scripts to Clipboard?") == DialogResult.Yes)
             Clipboard.SetText(string.Join(Environment.NewLine, result));
 
         CB_LocationID.SelectedIndex = 0;
@@ -715,20 +737,31 @@ public sealed partial class OWSE : Form
             Directory.CreateDirectory(folder);
 
         string[] result = new string[CB_LocationID.Items.Count];
+        List<int> skipped = [];
         for (int i = 0; i < CB_LocationID.Items.Count; i++)
         {
-            mapView.DrawMap = i;
-            Image img = mapView.GetMapImage(crop: true);
-            using (var ms = new MemoryStream())
+            try
             {
-                //error will throw from here
-                img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                byte[] data = ms.ToArray();
-                File.WriteAllBytes(Path.Combine(folder, $"{zdLocations[i].Replace('?', '-')} ({i}).png"), data);
+                mapView.DrawMap = i;
+                Image img = mapView.GetMapImage(crop: true);
+                using (var ms = new MemoryStream())
+                {
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                    byte[] data = ms.ToArray();
+                    File.WriteAllBytes(Path.Combine(folder, $"{zdLocations[i].Replace('?', '-')} ({i}).png"), data);
+                }
+                string l = mm.EntryList.Where(t => t != 0xFFFF).Aggregate("", (current, t) => current + t.ToString("000 "));
+                result[i] = $"{i:000}\t{CB_LocationID.Items[i]}\t{l}";
             }
-            string l = mm.EntryList.Where(t => t != 0xFFFF).Aggregate("", (current, t) => current + t.ToString("000 "));
-            result[i] = $"{i:000}\t{CB_LocationID.Items[i]}\t{l}";
+            catch (Exception ex)
+            {
+                skipped.Add(i);
+                result[i] = $"{i:000}\t{CB_LocationID.Items[i]}\tSKIPPED: {ex.Message}";
+                System.Diagnostics.Debug.WriteLine($"Skipped map image {i}: {ex.Message}");
+            }
         }
+        if (skipped.Count > 0)
+            WinFormsUtil.Alert($"Skipped {skipped.Count} map image(s) that failed to render: {string.Join(", ", skipped)}");
         if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Write Map parse output?") == DialogResult.Yes)
             File.WriteAllLines("MapLocations.txt", result);
         CB_LocationID.SelectedIndex = 0;
@@ -744,12 +777,23 @@ public sealed partial class OWSE : Form
         debugToolDumping = true;
         List<string> result = [];
         List<byte[]> data = [];
+        List<int> skipped = [];
         for (int i = 0; i < CB_LocationID.Items.Count; i++)
         {
-            CB_LocationID.SelectedIndex = i;
-            result.Add(Util.GetHexString(CurrentZone.ZD.Data));
-            data.Add(CurrentZone.ZD.Data);
+            try
+            {
+                CB_LocationID.SelectedIndex = i;
+                result.Add(Util.GetHexString(CurrentZone.ZD.Data));
+                data.Add(CurrentZone.ZD.Data);
+            }
+            catch (Exception ex)
+            {
+                skipped.Add(i);
+                System.Diagnostics.Debug.WriteLine($"Skipped location {i}: {ex.Message}");
+            }
         }
+        if (skipped.Count > 0)
+            WinFormsUtil.Alert($"Skipped {skipped.Count} location(s) that failed to load: {string.Join(", ", skipped)}");
         if (WinFormsUtil.Prompt(MessageBoxButtons.YesNoCancel, "Write ZDs to file?") == DialogResult.Yes)
             File.WriteAllBytes("ZDs.bin", data.SelectMany(z => z).ToArray());
 

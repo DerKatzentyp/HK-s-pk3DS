@@ -11,6 +11,9 @@ public class GARCFile(GARC.MemGARC g, GARCReference r, string p)
     public byte[][] Files { get => g.Files; set => g.Files = value; }
     public int FileCount => g.FileCount;
 
+    /// <summary>Replaces every file, allowing the archive to grow or shrink.</summary>
+    public void SetFilesResize(byte[][] files) { g.SetFilesResize(files); }
+
     public void Save()
     {
         File.WriteAllBytes(p, g.Data);

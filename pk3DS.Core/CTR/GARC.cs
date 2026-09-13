@@ -703,10 +703,22 @@ public static class GARC
                 if (value == null || value.Length != FileCount)
                     throw new ArgumentException();
 
-                var ng = PackGARC(value, garc.Version, (int)garc.ContentPadToNearest);
-                garc = ng.garc;
-                Data = ng.Data;
+                SetFilesResize(value);
             }
+        }
+
+        /// <summary>
+        /// Replaces the contents of the archive, allowing the file count to change.
+        /// The <see cref="Files"/> setter deliberately refuses a different count so an
+        /// editor cannot silently resize an archive; ROM expansion needs to do exactly
+        /// that, so it goes through here.
+        /// </summary>
+        public void SetFilesResize(byte[][] value)
+        {
+            ArgumentNullException.ThrowIfNull(value);
+            var ng = PackGARC(value, garc.Version, (int)garc.ContentPadToNearest);
+            garc = ng.garc;
+            Data = ng.Data;
         }
     }
 

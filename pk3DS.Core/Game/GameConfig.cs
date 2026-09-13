@@ -230,6 +230,9 @@ public class GameConfig
     public TextVariableCode GetVariableName(int value) { return Variables?.FirstOrDefault(v => v.Code == value); }
 
     private TextReference GetGameText(TextName name) { return GameText.FirstOrDefault(f => f.Name == name); }
+
+    /// <summary>Sub-file index of a named text list, or -1 if this game has none.</summary>
+    public int GetGameTextIndex(TextName name) { return GetGameText(name)?.Index ?? -1; }
     public TextData GetTextData(TextName file) => new(GetText(file));
 
     public string[] GetText(TextName file)
