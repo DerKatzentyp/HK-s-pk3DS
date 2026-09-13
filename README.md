@@ -30,6 +30,7 @@ To begin using HKs-pk3DS you must first download the zip file. Once you've downl
 Run the pk3DS.WinForms.exe in Administrator mode right click the program and click "run as Administrator".
 Once you open up the executable you can begin having fun with our editor and randomizing all the attributes and characteristics of the game to your liking.
 Make sure X,Y and ORAS are on the original version any update installed may crash the games.
+In the misc tool section you can now expend your ROM for adding subforms and items. DO NOT edit the name off an item in that list leave as is.
 
 Owse.cs was alterred too be a functional tool for dumping bytes now doesnt crash and instead skips corrupted data.
 Unk was reporpused too dump all scripts.
@@ -42,6 +43,12 @@ Below are some images of how the editor should look when you run it.
 ![CRO Editing Tools](https://i.imgur.com/lUSGbw5.png)
 <img width="373" height="469" alt="image" src="https://github.com/user-attachments/assets/86a42e13-263f-4165-9492-fa7a739afa7c" />
 <img width="376" height="465" alt="image" src="https://github.com/user-attachments/assets/cba20590-44b6-4246-b7c8-bda8b55ff717" />
+<img width="345" height="446" alt="items" src="https://github.com/user-attachments/assets/c15f1255-c1ec-433f-a671-f6eb841d0d0d" />
+<img width="472" height="276" alt="tool" src="https://github.com/user-attachments/assets/d0966d50-cf80-40ff-8cb6-29adc43a52ad" />
+<img width="521" height="460" alt="tool2" src="https://github.com/user-attachments/assets/d9e300bb-5467-4f23-a155-29e200429987" />
+
+
+
 
 
 
