@@ -20,6 +20,8 @@ The editor features a vast variety of randomizers to make every run as unique as
 - TM Moves
 - Special Mart Inventory
 - Automatic repointing off Shops. (possibility off up too 300+ shop items)
+- Ability to add subforms 1.4 only
+- Ability to add Items 1.4 only
 
 ## Installation and Usage
 
